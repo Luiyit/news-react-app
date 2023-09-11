@@ -1,19 +1,40 @@
-// TODO fixme
+
+export interface LinkType {
+  active: boolean,
+  label: string,
+  url: string
+}
+
 export interface PaginationType {
-  current: number;
-  next?: number;
-  pageSize: number;
-  total?: number;
+  currentPage: number;
+  from: number;
+  lastPage: number;
+  path: string;
+  perPage: number;
+  to: number;
+  total: number;
+  links: Link[]
 }
 
-export interface PageableType {
-  links?: PaginationType;
+export const actionsMethods = {
+  index: 'GET',
+  show: 'GET',
+  create: 'POST',
+  update: 'PUT',
+  delete: 'DELETE',
+  patch: 'PATCH'
 }
 
-export interface ApiResponse<DataType> {
-  data: DataType[] | DataType;
+export interface SingleResponse<DataType> {
+  data: DataType;
+}
+
+export interface PaginatedResponse<DataType> {
+  data: DataType[];
   pagination?: PaginationType;
 }
+
+export type ApiResponse<DataType> = PaginatedResponse<DataType> | SingleResponse<DataType>;
 
 // TODO use me!!!
 export interface ApiError {
@@ -21,3 +42,4 @@ export interface ApiError {
   status: number,
   message: string,
 }
+

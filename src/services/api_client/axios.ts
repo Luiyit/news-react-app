@@ -126,11 +126,14 @@ export default class Axios {
 			const { data: responseData } = response as { data: { data: unknown, meta: unknown }};
 			const { meta } = responseData;
 			
-			if(!meta) return { data: responseData.data || responseData };
 			
+			const transformedData = changeCase.camelKeys(responseData.data || responseData, { recursive: true, arrayRecursive: true })
+			if(!meta) return { data: transformedData || responseData };
+			
+			const paginationData = changeCase.camelKeys(meta, { recursive: true, arrayRecursive: true })
 			return { 
 				data: responseData.data || responseData, 
-				pagination: meta 
+				pagination: paginationData 
 			};
 		});
 

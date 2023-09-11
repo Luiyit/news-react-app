@@ -35,6 +35,7 @@ export default class RequestService<DataType> {
     return await this.client.get<ApiResponse<DataType>>(url, params, config);
   }
   
+  // TODO: Fixme
   protected async _show(url: string, params?: IHash<string | number>, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
     return await this.client.get<DataType>(url, params, config);
   }
