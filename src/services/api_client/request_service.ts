@@ -35,25 +35,26 @@ export default class RequestService<DataType> {
     return await this.client.get<ApiResponse<DataType>>(url, params, config);
   }
   
-  // TODO: Fixme
   protected async _show(url: string, params?: IHash<string | number>, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
-    return await this.client.get<DataType>(url, params, config);
+    return await this.client.get<ApiResponse<DataType>>(url, params, config);
   }
 
+  // TODO: Fixme - Puede ser DataType con todo opcional. 
+  // Otra opcion es que el metodo reciba otro generico
   protected async _create(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
-    return await this.client.post<DataType>(url, payload, config);
+    return await this.client.post<ApiResponse<DataType>>(url, payload, config);
   }
  
   protected async _update(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
-    return await this.client.put<DataType>(url, payload, config);
+    return await this.client.put<ApiResponse<DataType>>(url, payload, config);
   }
   
   protected async _delete(url: string, params?: IHash<string | number>, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
-    return await this.client.delete<DataType>(url, params, config);
+    return await this.client.delete<ApiResponse<DataType>>(url, params, config);
   }
   
   protected async _patch(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
-    return await this.client.patch<DataType>(url, payload, config);
+    return await this.client.patch<ApiResponse<DataType>>(url, payload, config);
   }
 
   /**

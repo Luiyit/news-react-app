@@ -25,3 +25,16 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+
+
+JWT token provider
+https://authkit.arkadip.dev/refreshtoken/#api-builder-example
+https://authkit.arkadip.dev/refreshtoken/#refreshapicallback
+
+React router
+https://reactrouter.com/en/main/start/tutorial
+
+JWT in Laravel
+https://jwt-auth.readthedocs.io/en/develop/quick-start/
