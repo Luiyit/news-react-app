@@ -1,6 +1,6 @@
 import { IHash } from '../../types/util.d'
 import { PaginationType } from './types.d'
-import Axios, { ReqProps } from './axios';
+import { ReqProps } from './axios';
 import { AxiosRequestConfig } from 'axios';
 import { ApiResponse } from "./types";
 import Client from './client';
@@ -10,9 +10,11 @@ export type { IHash, PaginationType, AxiosRequestConfig }
 
 export default class RequestService<DataType> {
 
-  protected client: Axios;
+  /**
+   * Client extends Axios
+   */
+  protected client;
 
-  // req: GetServerSidePropsContext["req"] | NextRequest | NextApiRequest
   constructor(reqProps: ReqProps) {
     this.client = new Client(reqProps);
   }
@@ -39,13 +41,11 @@ export default class RequestService<DataType> {
     return await this.client.get<ApiResponse<DataType>>(url, params, config);
   }
 
-  // TODO: Fixme - Puede ser DataType con todo opcional. 
-  // Otra opcion es que el metodo reciba otro generico
-  protected async _create(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
+  protected async _create(url: string, payload: unknown, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
     return await this.client.post<ApiResponse<DataType>>(url, payload, config);
   }
  
-  protected async _update(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
+  protected async _update(url: string, payload: unknown, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
     return await this.client.put<ApiResponse<DataType>>(url, payload, config);
   }
   
@@ -53,26 +53,7 @@ export default class RequestService<DataType> {
     return await this.client.delete<ApiResponse<DataType>>(url, params, config);
   }
   
-  protected async _patch(url: string, payload: any, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
+  protected async _patch(url: string, payload: unknown, config: AxiosRequestConfig = {}): Promise<ApiResponse<DataType>> {
     return await this.client.patch<ApiResponse<DataType>>(url, payload, config);
-  }
-
-  /**
-   * Return a default pagination or a pagination object from query
-   * 
-   * @param query request query object
-   * @returns PaginationType
-   */
-  static getPagination(query?: IHash<string> | undefined): PaginationType {
-    const { current, page_size: pageSize } = query || {};
-
-    /**
-     * *INFO: Probably if nothing is sent, should be return undefined, but
-     * *it could be insecure and a good practice should be incentive the  use of default pagination (like now!)
-     */
-    return {
-      current: Number(current) || 1,
-      pageSize: Number(pageSize) || 12,
-    } as PaginationType;
   }
 }

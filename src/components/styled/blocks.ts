@@ -65,4 +65,6 @@ const GridBox = styled(Div).attrs<GridI>(props => (props))<GridI>`
   ${gridStyle}
 `;
 
-export { Div, Flex, Grid, GridBox };
+const Image = styled(Div)``
+
+export { Div, Flex, Grid, GridBox, Image };

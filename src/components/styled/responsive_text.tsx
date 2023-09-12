@@ -13,7 +13,6 @@ export interface ResponsiveTextI extends TextI {
   xxl?: string
 }
 
-
 const Text = styled(BaseText).attrs((props: ResponsiveTextI) => props)<ResponsiveTextI>`
   font-size: ${({ xs }) => xs};
 

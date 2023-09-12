@@ -31,6 +31,7 @@ export interface SingleResponse<DataType> {
 
 export interface PaginatedResponse<DataType> {
   data: DataType[];
+  meta?: PaginationType;
   pagination?: PaginationType;
 }
 

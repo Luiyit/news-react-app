@@ -5,13 +5,12 @@ import { MailOutlined } from '@ant-design/icons';
 import GhostBlock from '../styled/ghost_block';
 
 const FooterBar = ({ height }: { height: string }) => {
-  const contactEmail = "luiyit.hernandez@gmail.com"
+  const contactEmail = "hello@newAggregator.com"
 
-  // 
   return (
     <Flex align='center' justify="space-between" height={height}>
       <Text padding="5px 0">
-        © Copyright 2023 New Aggregator All rights reserved.
+        © Copyright 2023 <strong>New Aggregator</strong> All rights reserved.
       </Text>
       <Text padding="5px 0">
         <GhostBlock displayUntil='md'>

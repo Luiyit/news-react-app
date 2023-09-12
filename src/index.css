@@ -3,10 +3,52 @@
   line-height: 1.5;
   font-weight: 400;
 }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+}
+html, body, #__next {
+  height: 100%;
+}
 
 body {
+  -webkit-font-smoothing: antialiased;
+}
+
+picture, video, canvas {
+  display: block;
+  max-width: 100%;
+}
+img, picture, video, canvas {
+  max-width: 100%;
+}
+input, button, textarea, select {
+  font: inherit;
+}
+p, h1, h2, h3, h4, h5, h6 {
   margin: 0;
-  padding: 0;
+}
+p{
+  line-height: 1.8;
+}
+@media (max-width: 768px){
+  p, ul{
+    font-size: 16px;
+    line-height: 1.5;
+  }
+}
+
+@media (max-width: 576px){
+  p, ul{
+    font-size: 14px;
+    line-height: 1.4;
+  }
+}
+
+#root, #__next {
+  isolation: isolate;
 }
 
 .container{
@@ -47,4 +89,64 @@ body {
     width:1340px;
     max-width:100%
   }
+}
+
+/* Ant */
+.ant-btn.ant-btn-left-loading-icon .ant-btn-loading-icon{
+  position: absolute;
+  left: 10px;
+}
+
+button.ant-btn.ant-btn-warning{
+  border: solid 1px #ffb744;;
+  background-color: #ffb744;
+}
+
+button.ant-btn.ant-btn-warning:hover{
+  background-color: #fff;
+  border: solid 1px #d9212b;
+}
+
+.btn-large{
+  min-height: 50px;
+  min-width: 220px;
+}
+@media (max-width: 768px){
+  .btn-large{
+    min-height: 45px;
+    min-width: 180px;
+  }
+}
+
+
+
+/* TODO: Move to component */
+ul.loyaltyme-list{
+  list-style: none;
+  padding-left: 30px;
+}
+ul.loyaltyme-list li{
+  padding: 8px 0;
+  position: relative;  
+}
+ul.loyaltyme-list li:before{
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  background-color: #d9212b;
+  border-radius: 50%;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+ul.loyaltyme-simple-list{
+  list-style: none;
+  padding-left: 0;
+  font-size: inherit;
+}
+ul.loyaltyme-simple-list li{
+  padding: 7px 0; 
+  font-size: inherit;
 }

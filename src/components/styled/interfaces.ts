@@ -2,7 +2,6 @@
  * DEV NOTE: 
  * Watch CSS group reference here: https://www.script-tutorials.com/css-reference/
  **/
-
 export interface BaseProps{
 }
 
@@ -187,8 +186,8 @@ export interface TransformProps{
 export interface gridProps{
   
   /* [grid] */
-  columnGap?: string | undefined;
-  rowGap?: string | undefined;
+  columnGap?: string | number | undefined;
+  rowGap?: string | number | undefined;
   gap?: string | undefined;
   gutter?: number[] | string[] | undefined;
   // Define how many rows and columns an element should span across

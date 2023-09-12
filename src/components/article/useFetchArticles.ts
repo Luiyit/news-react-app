@@ -22,7 +22,7 @@ const useFetchArticles = () => {
     setArticles((articles) => {
       return page === 1 ? response.data : [...articles, ...response.data]
     });
-    setPagination(response.pagination);
+    setPagination(response.meta);
   }, [service]);
 
   const fetchNextPage = useCallback(() => {

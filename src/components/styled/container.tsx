@@ -15,23 +15,3 @@ const Container: React.FC<ContainerProps> = ({ children, className, ...rest }) =
   )
 }
 export default Container
-
-const SiderContainer: React.FC<ContainerProps> = ({ children, className, ...rest }) => {
-  
-  const styleProps: DivI = {
-    padding: '25px',
-    maxHeight: '100%',
-    height: '100%',
-    overflowX: 'hidden',
-    overflowY: 'auto',
-    ...rest
-  };
-
-  return (
-    <Div className={`sider-container ${className || ''}`} {...styleProps}>
-      { children }
-    </Div>
-  )
-}
-
-export { Container, SiderContainer }

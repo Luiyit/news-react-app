@@ -14,10 +14,12 @@
     "antd": "^5.9.0",
     "axios": "^1.5.0",
     "change-object-case": "^0.2.1",
-    "hex-to-rgba": "^2.0.1",
+    "country-state-city": "^3.2.0",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-auth-kit": "^2.12.6",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.46.1",
     "react-router-dom": "^6.15.0",
     "styled-components": "^6.0.7"
   },

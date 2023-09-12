@@ -2,7 +2,6 @@ import { createGlobalStyle  } from 'styled-components';
 
 const globalLayoutStyle = createGlobalStyle`
   .ant-layout{
-    
     .ant-layout-header {
       background: white;
       line-height: initial;
@@ -14,11 +13,6 @@ const globalLayoutStyle = createGlobalStyle`
         border-bottom: none;
       }
     }
-
-    .ant-layout-footer{
-      padding: 0;
-    }
-
   }
 `
 

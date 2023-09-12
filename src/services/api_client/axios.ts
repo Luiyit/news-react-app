@@ -1,31 +1,12 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosHeaders } from 'axios';
+import axios, { AxiosInstance, AxiosRequestConfig, AxiosHeaders, AxiosResponse } from 'axios';
 import changeCase from 'change-object-case';
 import  { AxiosError } from 'axios';
 import FormData from 'form-data'
 import { IHash } from './request_service';
 
-export interface ApiClientProps{
-	apiUrl: string;
-  deserializeResponse: boolean;
-	applyBodySnakeKeys: boolean;
-	returnResponseHeaders?: boolean;
-}
-
 export interface ReqProps{
   query?: IHash<string>;
 	token?: string | null
-}
-
-// interface PaginatedResponse {
-// 	data: unknown;
-// 	status: number;
-// }
-
-interface ApiError {
-	// response?: PaginatedResponse;
-	message: string;
-	status: number;
-	
 }
 
 export default class Axios {
@@ -44,7 +25,7 @@ export default class Axios {
 		});
 
 		Axios.requestInterceptor(axiosInstance);	
-		Axios.responseInterceptor(axiosInstance);
+		// Axios.responseInterceptor(axiosInstance);
 
 		return axiosInstance;
 	}
@@ -66,41 +47,66 @@ export default class Axios {
 	async get<DataType>(url: string, params: unknown = {}, config: AxiosRequestConfig = {}): Promise<DataType>{
 		const query = this.getQueryString(params);
 		const getConfig = await this.generateConfig(config);
-		return await this.call<DataType>(this.axios.get, [`${url}?${query}`, getConfig]);
+		const response = await this.call<DataType>(this.axios.get, [`${url}?${query}`, getConfig]);
+		return await this.prepareResponse<DataType>(response)
 	}
 
 	async post<DataType>(url: string, params: unknown = {}, config: AxiosRequestConfig = {}): Promise<DataType>{
 		const postConfig = await this.generateConfig(config);
-		return await this.call<DataType>(this.axios.post, [url, params, postConfig]);
+		const response = await this.call<DataType>(this.axios.post, [url, params, postConfig]);
+		return await this.prepareResponse<DataType>(response)
 	}
 
 	async put<DataType>(url: string, params: unknown = {}, config: AxiosRequestConfig = {}): Promise<DataType>{
 		const putConfig = await this.generateConfig(config);
-		return await this.call<DataType>(this.axios.put, [url, params, putConfig]);
+		const response = await this.call<DataType>(this.axios.put, [url, params, putConfig]);
+		return await this.prepareResponse<DataType>(response)
 	}
 	
 	async patch<DataType>(url: string, params: unknown = {}, config: AxiosRequestConfig = {}): Promise<DataType>{
 		const putConfig = await this.generateConfig(config);
-		return await this.call<DataType>(this.axios.patch, [url, params, putConfig]);
+		const response = await this.call<DataType>(this.axios.patch, [url, params, putConfig]);
+		return await this.prepareResponse<DataType>(response)
 	}
 
 	async delete<DataType>(url: string, params: unknown = {}, config: AxiosRequestConfig = {}): Promise<DataType>{
 		const query = this.getQueryString(params);
 		const deleteConfig = await this.generateConfig(config);
-		return await this.call<DataType>(this.axios.delete, [`${url}?${query}`, deleteConfig]);
+		const response = await this.call<DataType>(this.axios.delete, [`${url}?${query}`, deleteConfig]);
+		return await this.prepareResponse<DataType>(response)
 	}
 
-	call<DataType>(callback: Function, params: any): Promise<DataType>{
+	/**
+	 * Prepare response data for the client
+	 * 
+	 * @param response Backend response
+	 * @returns Response data
+	 */
+	async prepareResponse<DataType>(response: AxiosResponse<DataType>):Promise<DataType>{
+		const { data } = response;
+
+		const responseData = data as Record<string, unknown>;
+		Object.keys(responseData).forEach((key) => {
+			if(key !== 'data')
+				responseData[key] = changeCase.camelKeys(responseData[key], { recursive: true, arrayRecursive: true })		
+		})
+
+		return changeCase.camelKeys(responseData, { recursive: true, arrayRecursive: true })		
+	}
+
+	// eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any
+	call<DataType>(callback: Function, params: any): Promise<AxiosResponse<DataType>>{
 		return new Promise((resolve, reject) => {
 						
-			callback(...params).then((response: ApiResponse) => {
-				resolve(response as DataType);
-			}).catch((error: ApiError) => {
+			callback(...params).then((response: AxiosResponse<DataType>) => {
+
+				resolve(response);
+
+			}).catch((error: unknown) => {
 				
 				if (error instanceof AxiosError){ 
 					reject(error);
 
-				// TODO: Check this validation
 				// error.response has an aborted attribute. Check it!
 				}else{
 
@@ -110,34 +116,12 @@ export default class Axios {
 					 * Cancel => { message }
 					 * In this case we don't want to reject the request
 					 */
-					if(error?.message !== "Component unmounted"){
+					if((error as { message: string })?.message !== "Component unmounted"){
 						reject(error);
 					}
 				}
 			});
 		});
-	}
-
-  static responseInterceptor(axiosInstance: AxiosInstance) 
-	{
-		axiosInstance.interceptors.response.use(function(response: unknown) 
-		{
-			// TODO: Define types
-			const { data: responseData } = response as { data: { data: unknown, meta: unknown }};
-			const { meta } = responseData;
-			
-			
-			const transformedData = changeCase.camelKeys(responseData.data || responseData, { recursive: true, arrayRecursive: true })
-			if(!meta) return { data: transformedData || responseData };
-			
-			const paginationData = changeCase.camelKeys(meta, { recursive: true, arrayRecursive: true })
-			return { 
-				data: responseData.data || responseData, 
-				pagination: paginationData 
-			};
-		});
-
-		return axiosInstance;
 	}
 
 	/**

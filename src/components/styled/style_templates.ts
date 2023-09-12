@@ -1,4 +1,3 @@
-"use client"
 import * as propsTypes from './interfaces';
 
 const marginStyle = (props: propsTypes.MarginProps) => (`
@@ -76,9 +75,7 @@ const otherStyle = (props: propsTypes.OtherProps) => (`
   ${props.flexDirection && `flex-direction: ${props.flexDirection};` || ''}
   ${props.flexWrap && `flex-wrap: ${props.flexWrap};` || ''}
   ${props.flexShrink && `flex-shrink: ${props.flexShrink};` || ''}
-  ${props.justify && `justify-content: ${props.justify};` || ''}
   ${props.flexBasis && `flex-basis: ${props.flexBasis};` || ''}
-  ${props.flexAlign && `align-items: ${props.flexAlign};` || ''} 
 `)
 
 const gridStyle = (props: propsTypes.gridProps) => (`

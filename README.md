@@ -38,3 +38,6 @@ https://reactrouter.com/en/main/start/tutorial
 
 JWT in Laravel
 https://jwt-auth.readthedocs.io/en/develop/quick-start/
+
+
+const authState = { email: "luiyit@gmail.com", password: '1234'}

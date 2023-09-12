@@ -4,7 +4,10 @@ import Header from './header'
 import Footer from './footer'
 import Content from './content'
 import MainLayoutStyle from './style/main_style'
+import GlobalLayoutStyle from './style/global_style'
+import logo from '../../assets/react.svg'
 
+console.log(logo)
 
 interface MainLayoutProps{
   hideHeader?: boolean
@@ -17,12 +20,13 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
   return (
     <React.Fragment>
       {/* <Head /> */}
+      <GlobalLayoutStyle />
       <MainLayoutStyle/>
       <Layout className={`ant-full-content-template fixed-header`}>
         <Header 
           // menuItems={[]} 
           // profileMenuItems={[]}
-          // logo={logo}
+          logo={logo}
           // favIcon={favIcon}
           // config={header}
         />
@@ -36,7 +40,7 @@ const MainLayout: React.FC<MainLayoutProps> = ({ children }) => {
         >
           { children }
         </Content>
-        <Footer />
+        <Footer/>
       </Layout>
     </React.Fragment>
 
