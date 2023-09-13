@@ -12,11 +12,14 @@ const tagAttrs = [
   'paddingL', 
   'paddingT', 
   'paddingR', 
+  'paddingB',
   'marginB', 
+  'marginT', 
   'flexDirection', 
   'gridTemplateColumns', 
   'rowGap', 
-  'columnGap'
+  'columnGap',
+  'backgroundColor',
 ];
 
 function App() {

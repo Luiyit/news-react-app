@@ -26,4 +26,4 @@ export default function useOneEffect(callback: () => void, deps: any[]){
 
   }, [deps, callback, timesCall]);
 
-};
+}

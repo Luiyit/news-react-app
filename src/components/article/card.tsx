@@ -56,7 +56,7 @@ const Card = styled.div`
     position: absolute;
     top: 0;
     right: 0;
-    z-index: 1;
+    z-index: 5;
     text-align: center;
     padding: 10px;
     background-color: #c83d66;
@@ -72,7 +72,9 @@ const Card = styled.div`
   .card-body{
     padding: 20px;
     background-color: #eee;
-
+    .title{
+      cursor: pointer;
+    }
     .tags{
       margin: 15px 0;
     }    
@@ -105,7 +107,7 @@ const ArticleCard: React.FC<props> = ({ article }) => {
       />
 
       <Div className="card-body">
-        <h3>{ article.title }</h3>
+        <h3 className="title" onClick={open} >{ article.title }</h3>
         <Div className="tags">
           <Tag color="#c83d66">{ article.source.name }</Tag>
           <Tag color="#f51f5e">{ article.category.name }</Tag>

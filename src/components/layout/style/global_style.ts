@@ -2,6 +2,8 @@ import { createGlobalStyle  } from 'styled-components';
 
 const globalLayoutStyle = createGlobalStyle`
   .ant-layout{
+    background-color: white;
+    
     .ant-layout-header {
       background: white;
       line-height: initial;
