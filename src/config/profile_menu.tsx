@@ -7,6 +7,7 @@ const SignOutButton = () => {
   const signOut = useSignOut()
   const logout = () => {
     signOut();
+    window.location.reload();
   }
   return (
     <div onClick={() => logout()}>Sign Out</div>
