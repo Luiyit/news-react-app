@@ -33,19 +33,20 @@ function HomePage(){
         <SearchBar onChange={onSearchChange}/>
           
           <Row gutter={[20,20]}>
-            <Col md={24} lg={16}>
+
+          <Col sm={24} md={24} lg={8}>
+              <FilterBar
+                onSourceToggle={onSourceToggle} 
+                onCategoryToggle={onCategoryToggle} 
+              />
+            </Col>
+            
+            <Col sm={24} md={24} lg={16}>
               <Div position="relative">
                 <AbsoluteLoadingBlock loading={loading} />
                 <ArticleList articles={articles} />
                 <LoadMore {...{fetchNextPage, loading, pagination} } />
               </Div>       
-            </Col>
-
-            <Col md={24} lg={8}>
-              <FilterBar
-                onSourceToggle={onSourceToggle} 
-                onCategoryToggle={onCategoryToggle} 
-              />
             </Col>
           </Row>
         
