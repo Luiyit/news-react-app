@@ -4,7 +4,6 @@ import HookForm, { FormError } from '../../form/hook_form';
 import { useState } from 'react';
 import { Flex, Grid } from '../../styled/blocks';
 import AuthService from '../../../services/AuthService'
-// import submissionErrorHandler from '@root/loyalty/helpers/submission_error_handler';
 import { useNotifier } from '../../../providers/notifier';
 
 export interface Inputs{
@@ -54,8 +53,6 @@ const SignUpForm = ({ onSuccess, onError, showPasswordConfirmation = true }: Pro
 
     } catch (reqError: unknown) {
 
-      // TODO: fix form errors
-      // setError({ passwordConfirmation: ["Passwords don't match"] })
       showError("Error", (reqError as { message : string }).message || "Something was wrong.")
       onError && onError(payload, error)
     }

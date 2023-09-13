@@ -37,7 +37,6 @@ export interface PaginatedResponse<DataType> {
 
 export type ApiResponse<DataType> = PaginatedResponse<DataType> | SingleResponse<DataType>;
 
-// TODO use me!!!
 export interface ApiError {
   error?: unknown,
   status: number,

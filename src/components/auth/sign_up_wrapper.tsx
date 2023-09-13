@@ -5,7 +5,7 @@ import SignUpForm, { Inputs as CredentialInputs } from './forms/sign_up_form'
 
 interface Props {
   setSignIn: () => void
-  onSuccess?: (payload: CredentialInputs) => void
+  onSuccess?: (payload: CredentialInputs) => Promise<void>
   onError?: (payload: CredentialInputs, error: unknown) => void
   signInLabel?: string
 }

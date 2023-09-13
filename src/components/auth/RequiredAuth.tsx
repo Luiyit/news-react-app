@@ -7,7 +7,7 @@ interface Props {
   loginPath?: string,
 }
 
-const RequiredAuth: React.FC<Props> = ({ Component, loginPath = "/login" }) => {
+const RequiredAuth: React.FC<Props> = ({ Component, loginPath = "/?login=true" }) => {
   const isAuthenticated = useIsAuthenticated(); 
   const auth = isAuthenticated();
   return auth ? <Component /> : <Navigate to={ loginPath } />;

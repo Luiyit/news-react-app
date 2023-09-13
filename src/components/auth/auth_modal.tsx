@@ -7,7 +7,7 @@ import SignIn from './sign_in_wrapper'
 import SignUp from './sign_up_wrapper'
 import AuthService from '../../services/AuthService'
 import { useSignIn } from 'react-auth-kit'
-import type { Inputs as CredentialInputs } from './forms/credentials'
+import type { Inputs as SignupInputs } from './forms/sign_up_form'
 
 export interface SignInUpModalProps {
   modalProps: CallbackProps
@@ -19,7 +19,6 @@ function Handler({ modalProps, startMode='signin' }: SignInUpModalProps) {
   const [mode, setMode] = useState<"signin" | "signup">(startMode)
   const { currentUser, onError, onSuccess, alreadySignedIn } = useSignin({ redirectTo: "/" })
 
-  // TODO: create a hook
   const signIn = useSignIn()
 
   useEffect(() => {
@@ -29,13 +28,12 @@ function Handler({ modalProps, startMode='signin' }: SignInUpModalProps) {
     }
   }, [modalProps, alreadySignedIn, currentUser])
 
-  // TODO: Fix types
   async function onSignInSuccess(response: unknown) {
     onSuccess(response, false)
     modalProps.setOpen(false)
   }
 
-  async function onSignupSuccess(payload: CredentialInputs) {
+  async function onSignupSuccess(payload: SignupInputs) {
     
     const service = new AuthService({});    
     const authToken = await service.login(payload)

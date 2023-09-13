@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Inter, system-ui, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 }
@@ -116,37 +116,4 @@ button.ant-btn.ant-btn-warning:hover{
     min-height: 45px;
     min-width: 180px;
   }
-}
-
-
-
-/* TODO: Move to component */
-ul.loyaltyme-list{
-  list-style: none;
-  padding-left: 30px;
-}
-ul.loyaltyme-list li{
-  padding: 8px 0;
-  position: relative;  
-}
-ul.loyaltyme-list li:before{
-  position: absolute;
-  content: '';
-  width: 10px;
-  height: 10px;
-  background-color: #d9212b;
-  border-radius: 50%;
-  left: -20px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-ul.loyaltyme-simple-list{
-  list-style: none;
-  padding-left: 0;
-  font-size: inherit;
-}
-ul.loyaltyme-simple-list li{
-  padding: 7px 0; 
-  font-size: inherit;
 }

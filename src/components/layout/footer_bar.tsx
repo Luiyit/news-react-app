@@ -5,7 +5,7 @@ import { MailOutlined } from '@ant-design/icons';
 import GhostBlock from '../styled/ghost_block';
 
 const FooterBar = ({ height }: { height: string }) => {
-  const contactEmail = "hello@newAggregator.com"
+  const contactEmail = "hello@newaggregator.com"
 
   return (
     <Flex align='center' justify="space-between" height={height}>

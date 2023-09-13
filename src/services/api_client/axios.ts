@@ -87,11 +87,11 @@ export default class Axios {
 
 		const responseData = data as Record<string, unknown>;
 		Object.keys(responseData).forEach((key) => {
-			if(key !== 'data')
+			if(key !== 'data' && typeof responseData[key] === 'object')
 				responseData[key] = changeCase.camelKeys(responseData[key], { recursive: true, arrayRecursive: true })		
 		})
 
-		return changeCase.camelKeys(responseData, { recursive: true, arrayRecursive: true })		
+		return responseData as DataType
 	}
 
 	// eslint-disable-next-line @typescript-eslint/ban-types, @typescript-eslint/no-explicit-any

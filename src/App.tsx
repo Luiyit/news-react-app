@@ -15,6 +15,7 @@ const tagAttrs = [
   'paddingB',
   'marginB', 
   'marginT', 
+  'borderB',
   'flexDirection', 
   'gridTemplateColumns', 
   'rowGap', 

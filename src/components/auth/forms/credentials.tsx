@@ -16,10 +16,12 @@ export interface Inputs {
 
 interface Props {
   provider: Provider
-  onSuccess?: Function
-  onError?: Function
+  onSuccess?: () => void
+  onError?: () => void
   signup?: boolean
 }
+
+type ErrorType = { [key in string]: string[] }
 
 /**
  * DEV NOTE:
@@ -29,7 +31,7 @@ interface Props {
 const AuthCredentialsForm = ({ onSuccess, onError, provider, signup }: Props) => {
   
   const [saving, setSaving] = useState<boolean>(false)
-  const [error, setError] = useState<any>({})
+  const [error, setError] = useState<ErrorType>({})
   const signIn = useSignIn()
 
   const onSubmit = useCallback(async (payload: Inputs) => {
@@ -38,7 +40,7 @@ const AuthCredentialsForm = ({ onSuccess, onError, provider, signup }: Props) =>
 
     const service = new AuthService({});    
     const authToken = await service.login(payload)
-    
+        
     const isSignedIn = signIn({
       token: authToken.accessToken,
       expiresIn: authToken.expiresIn,

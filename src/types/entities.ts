@@ -36,3 +36,9 @@ export interface ArticleType{
   source: SourceType
   url: string
 }
+
+export interface PreferenceType{
+  id: number;
+  type: string;
+  preferable: SourceType | CategoryType;
+}
