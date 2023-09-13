@@ -6,7 +6,6 @@ export default class ArticleService extends RequestService<ArticleType>{
   
   async index(params?: IHash<string | number>): Promise<PaginatedResponse<ArticleType>>{
     const response = await this._index("articles", params)
-    console.log("response", response)
     return response as PaginatedResponse<ArticleType>
   }
   

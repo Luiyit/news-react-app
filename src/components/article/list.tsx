@@ -9,9 +9,9 @@ interface props {
 
 const ArticleList: React.FC<props> = ({ articles }) => {
   return (
-    <Row gutter={[10,10]}>
+    <Row gutter={[20,20]}>
       { articles.map(article => (
-        <Col span={8} key={article.id}>
+        <Col sm={24} md={12} key={article.id}>
           <ArticleCard article={article} />
         </Col>
       ))}  

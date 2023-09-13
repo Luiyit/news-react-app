@@ -15,6 +15,7 @@
     "axios": "^1.5.0",
     "change-object-case": "^0.2.1",
     "country-state-city": "^3.2.0",
+    "luxon": "^3.4.3",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-auth-kit": "^2.12.6",
@@ -24,6 +25,7 @@
     "styled-components": "^6.0.7"
   },
   "devDependencies": {
+    "@types/luxon": "^3.3.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

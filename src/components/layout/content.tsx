@@ -2,16 +2,8 @@ import React from 'react';
 import { Layout } from 'antd';
 const { Content: AntContent } = Layout;
 
-
 interface ContentProps{
   children?: React.ReactNode | React.ReactNode[];
-  // className?: string;
-  // headerHidden?: boolean
-  // footerHidden?: boolean
-  // headerHeight: number
-  // footerHeight: number
-  // useFooter: boolean
-  // disableDarkMode?: boolean
 }
 
 const Content: React.FC<ContentProps> = ({ children }) => {
