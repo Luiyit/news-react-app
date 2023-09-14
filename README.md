@@ -1,43 +1,31 @@
-# React + TypeScript + Vite
+# News Aggregator [React + Typescript]
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+The project was built with React from a foundation created with Vite. You can find the API for this project [here](https://github.com/Luiyit/news-laravel-api)
 
-Currently, two official plugins are available:
-
+Vite plugins:
 - [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+## Authentication
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Authentication was done using JWT token. 
+The package to manage the global authentication state was [React Auth Kit](https://authkit.arkadip.dev/)
 
-- Configure the top-level `parserOptions` property like this:
+## How to run the project
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
+The project is dockerized. To run the project using docker you must have it installed on your computer.
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- Copy and paste the .env file for laravel in the rood folder [This file is not included in the repository].
+- Build the Dockerfile `docker build -t react-with-vite .`
+- Run the Docker Container `docker run -d --rm -p 3001:3001 --name new-aggregator react-with-vite`
 
+The port configured to be exposed is 3001. If you need to change it, make sure to modify the *vide.config.ts* file.
 
+Now you will be able to open the app in your browser. Open the Browser and access `http://localhost:3001`. Remember that the application expects the server to be running.
 
-
-JWT token provider
-https://authkit.arkadip.dev/refreshtoken/#api-builder-example
-https://authkit.arkadip.dev/refreshtoken/#refreshapicallback
-
-React router
-https://reactrouter.com/en/main/start/tutorial
-
-JWT in Laravel
-https://jwt-auth.readthedocs.io/en/develop/quick-start/
-
-
-const authState = { email: "luiyit@gmail.com", password: '1234'}
+## Improvements
+- Includes tests using Jest and Express
+- Error handling and notify the user using the notification system already configured in the app.
+- Profile page to allow users to adjust their personal information
+- Use [React Helmet](https://www.npmjs.com/package/react-helmet) to improve the metadata.
+- Create a main menu
